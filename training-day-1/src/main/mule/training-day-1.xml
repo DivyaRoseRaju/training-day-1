@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:sockets="http://www.mulesoft.org/schema/mule/sockets"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/sockets http://www.mulesoft.org/schema/mule/sockets/current/mule-sockets.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="c92eadab-b878-46e4-b047-6ba865709da6" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="training-day-1Flow" doc:id="b961c959-1049-4e0e-b196-05fa944e2fa8" >
+		<http:listener doc:name="Listener-java-input" doc:id="cda79d15-6b84-4027-8a0a-a385d49a1e06" config-ref="HTTP_Listener_config" path="/" allowedMethods="POST"/>
+		<set-payload value='#["Welcome! " ++ payload.firstName ++" " ++ payload.lastName ++ ". Your customer id is "++ payload.cid ++ "."]' doc:name="Set Payload" doc:id="fed357f7-1938-483e-b31b-724725031cfe" />
+	</flow>
+</mule>
